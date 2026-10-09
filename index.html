@@ -308,6 +308,24 @@
   .mint-list b{color:var(--brand)}
   @media(max-width:900px){.mint-grid{grid-template-columns:1fr}}
 
+  /* ===== 合作流程 ===== */
+  #process{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .step-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;position:relative;transition:.25s;overflow:hidden}
+  .step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--gold)}
+  .step-card::after{content:"→";position:absolute;right:-9px;top:46%;font-size:15px;color:var(--gold);font-weight:700}
+  .step-card:last-child::after{display:none}
+  .step-card .no{width:34px;height:34px;border-radius:10px;background:var(--brand);color:#FAF6EE;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;font-weight:700;margin-bottom:12px}
+  .step-card h3{font-family:var(--serif);font-size:17px;margin-bottom:8px}
+  .step-card .do{font-size:13px;color:var(--ink-soft);line-height:1.75}
+  .step-card .out{margin-top:11px;font-size:12.5px;color:var(--tech);background:var(--tech-soft);border-radius:8px;padding:7px 10px}
+  .step-card .dur{margin-top:10px;font-size:12px;color:var(--ink-faint)}
+  .process-note{margin-top:26px;background:var(--gold-soft);border:1px solid #E7D9A6;border-radius:var(--radius);padding:16px 22px;font-size:13.5px;color:#7A6210;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .process-note .ic{font-size:20px}
+  .process-note span:nth-child(2){flex:1;min-width:240px}
+  .process-note .btn{padding:10px 22px;font-size:14px}
+  @media(max-width:1100px){.process-grid{grid-template-columns:repeat(3,1fr)}.step-card:nth-child(3)::after{display:none}.step-card:nth-child(4)::after{display:block}}
+
   /* ===================== 手机端适配（评委扫码主力设备） ===================== */
   @media(max-width:768px){
     html{-webkit-text-size-adjust:100%}
@@ -367,6 +385,17 @@
     .plan-card h3{font-size:19px}
     .chain-note{padding:14px 16px;font-size:13px;gap:10px;align-items:flex-start}
     .chain-note .ic{font-size:18px}
+
+    /* 合作流程 */
+    .process-grid{grid-template-columns:1fr;gap:14px}
+    .step-card{padding:20px 18px}
+    .step-card::after{display:none!important}
+    .step-card h3{font-size:16.5px}
+    .step-card .do{font-size:12.5px}
+    .step-card .out{font-size:12px}
+    .process-note{padding:16px;gap:10px;font-size:13px}
+    .process-note .btn{width:100%;justify-content:center}
+    .process-note span:nth-child(2){min-width:0}
 
     /* 溯源查询 */
     .trace-panel{padding:20px 16px;border-radius:14px}
@@ -477,6 +506,7 @@
     </a>
     <div class="nav-links">
       <a href="#pain" class="hide-sm">痛点洞察</a>
+      <a href="#process" class="hide-sm">合作流程</a>
       <a href="#service" class="hide-sm">四位一体</a>
       <a href="#packaging" class="hide-sm">定制包装</a>
       <a href="#trace">溯源查询</a>
@@ -591,6 +621,63 @@
       </div>
     </div>
     <div class="chain-note reveal"><span class="ic">🛡️</span><span>依托<b>贵州医科大学中药功效成分发掘与利用全国重点实验室</b>与<b>道地药材慢性病防治工程研究中心</b>提供检测与科研支撑；底层采用联盟链架构，监管节点共同记账。</span></div>
+  </div>
+</section>
+
+<!-- ================= 合作流程 ================= -->
+<section id="process">
+  <div class="wrap">
+    <span class="kicker reveal">COOPERATION PROCESS</span>
+    <h2 class="sec-title reveal">五步接入 · 标准合作流程</h2>
+    <p class="sec-sub reveal">从需求对接到持续运营，全流程标准化交付，合作方<b>看得清进度、拿得到凭证</b>，首批可先做单品种试点，跑通后再扩品类、扩区域。</p>
+    <div class="process-grid">
+      <div class="step-card reveal">
+        <div class="no">01</div>
+        <h3>需求对接</h3>
+        <div class="do">沟通药材品类、年产量、流通半径与现有痛点，明确包装、仓储、物流与溯源的具体诉求。</div>
+        <div class="out">交付《需求登记表》</div>
+        <div class="dur">参考周期 1 个工作日</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="no">02</div>
+        <h3>勘察与方案</h3>
+        <div class="do">赴产地与仓库实地勘察，输出分类包装方案、仓储温控方案与物流线路方案，同步给出报价。</div>
+        <div class="out">交付《一体化服务方案书》+ 报价单</div>
+        <div class="dur">参考周期 3 个工作日</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="no">03</div>
+        <h3>签约与赋码</h3>
+        <div class="do">签订服务协议，为批次建立电子档案，批量生成一物一码并交付赋码清单，支持贴码与喷码两种方式。</div>
+        <div class="out">交付溯源码库 + 赋码清单</div>
+        <div class="dur">参考周期 2 个工作日</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="no">04</div>
+        <h3>入仓与运营</h3>
+        <div class="do">药材入库后统一温控管理，GSP 台账同步生成，冷链车辆按线路调度，全流程数据实时上平台。</div>
+        <div class="out">交付可视化看板 + 每批次溯源页</div>
+        <div class="dur">长期运营 · 按批次结算</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="no">05</div>
+        <h3>复盘与优化</h3>
+        <div class="do">按季度复盘损耗率、履约时效与扫码查询数据，动态调整包装与线路方案，持续降本增效。</div>
+        <div class="out">交付《季度服务报告》</div>
+        <div class="dur">每季度一次</div>
+      </div>
+    </div>
+    <div class="partners reveal">
+      <span>种植合作社 / 药材基地</span>
+      <span>中药饮片与制药企业</span>
+      <span>连锁药房 / 电商零售端</span>
+      <span>第三方仓储与物流方</span>
+    </div>
+    <div class="process-note reveal">
+      <span class="ic">🤝</span>
+      <span>合作方式：按批次规模计费，方案与报价免费出具；试点期间仅收包装与物流成本，验证效果后再签订年度框架协议。</span>
+      <button class="btn btn-primary" onclick="jumpToTrace()">先看溯源效果</button>
+    </div>
   </div>
 </section>
 
@@ -857,6 +944,7 @@
         <a href="#trace">溯源查询</a>
         <a href="#packaging">定制包装体系</a>
         <a href="#service">四位一体服务</a>
+        <a href="#process">合作流程</a>
         <a href="#plan">发展规划</a>
       </div>
       <div>
