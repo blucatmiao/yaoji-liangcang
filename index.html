@@ -1,0 +1,3325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>药济良仓 — 中药包装物流一体化服务平台</title>
+<meta name="description" content="药济良仓：分类包装+专业仓储+温控物流+区块链溯源，四位一体的中药包装物流一体化服务平台。一物一码，让每一味药材来路清明。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='8' fill='%239A3B26'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23FAF6EE' font-family='serif' font-weight='bold'%3E药%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#FAF6EE;
+    --paper-2:#F2EBDC;
+    --card:#FFFDF8;
+    --ink:#2B2620;
+    --ink-soft:#6B5F52;
+    --ink-faint:#9A8D7C;
+    --brand:#9A3B26;
+    --brand-dark:#7A2D1C;
+    --brand-soft:#F3E3DD;
+    --gold:#C9A227;
+    --gold-soft:#F5EBCE;
+    --tech:#2C4A6E;
+    --tech-soft:#E8EEF5;
+    --line:#E4D9C6;
+    --radius:14px;
+    --shadow:0 2px 12px rgba(43,38,32,.06), 0 10px 32px rgba(43,38,32,.05);
+    --serif:"STZhongsong","Source Han Serif SC","Noto Serif SC","SimSun",serif;
+    --sans:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--brand);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  section{padding:88px 0}
+  .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--brand);font-size:13px;letter-spacing:.35em;font-weight:600}
+  .kicker::before{content:"";width:28px;height:2px;background:var(--gold)}
+  h2.sec-title{font-family:var(--serif);font-size:34px;margin:14px 0 10px;letter-spacing:.06em}
+  .sec-sub{color:var(--ink-soft);max-width:720px;margin-bottom:44px}
+  .sec-sub b{color:var(--brand)}
+
+  /* ===== 导航 ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,246,238,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:12px;font-family:var(--serif)}
+  .logo .seal{width:38px;height:38px;background:var(--brand);color:#FAF6EE;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:bold;box-shadow:inset 0 0 0 2px rgba(250,246,238,.35)}
+  .logo .name{font-size:19px;letter-spacing:.12em;font-weight:600}
+  .logo .en{display:block;font-size:10px;letter-spacing:.28em;color:var(--ink-faint);font-family:var(--sans)}
+  .nav-links{display:flex;gap:6px;align-items:center}
+  .nav-links a{padding:8px 13px;border-radius:8px;font-size:14px;color:var(--ink-soft);transition:.2s}
+  .nav-links a:hover{color:var(--brand);background:var(--brand-soft)}
+  .nav-cta{background:var(--brand)!important;color:#fff!important;padding:8px 18px!important;border-radius:999px}
+  .nav-cta:hover{background:var(--brand-dark)!important}
+  @media(max-width:920px){.nav-links a.hide-sm{display:none}}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;padding:170px 0 100px;overflow:hidden;background:
+    radial-gradient(1100px 500px at 85% -10%, #F3E3DD 0%, transparent 60%),
+    radial-gradient(700px 420px at -10% 110%, var(--gold-soft) 0%, transparent 55%),
+    var(--paper)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 16px;font-size:13px;color:var(--ink-soft);box-shadow:var(--shadow)}
+  .hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+  .hero h1{font-family:var(--serif);font-size:58px;line-height:1.25;margin:26px 0 6px;letter-spacing:.04em}
+  .hero h1 .accent{color:var(--brand)}
+  .hero .sub{font-family:var(--serif);font-size:21px;color:var(--ink-soft);letter-spacing:.22em;margin-bottom:26px}
+  .hero p.lead{color:var(--ink-soft);max-width:560px;margin-bottom:36px}
+  .hero p.lead b{color:var(--brand)}
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:.25s}
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 22px rgba(154,59,38,.32)}
+  .btn-primary:hover{background:var(--brand-dark);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--brand)}
+  .hero-tags{display:flex;gap:10px;margin-top:34px;flex-wrap:wrap}
+  .hero-tags span{font-size:12.5px;padding:6px 14px;border-radius:8px;background:var(--card);border:1px solid var(--line);color:var(--ink-soft)}
+  .hero-tags span b{color:var(--tech);font-weight:600}
+
+  .hero-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 32px;box-shadow:var(--shadow)}
+  .hero-card .hc-title{font-family:var(--serif);font-size:17px;letter-spacing:.14em;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+  .hero-card .hc-title em{font-style:normal;font-size:11px;color:var(--tech);background:var(--tech-soft);padding:3px 10px;border-radius:999px;letter-spacing:.1em}
+  .qr-demo{display:flex;gap:26px;align-items:center}
+  .qr-box{width:148px;height:148px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;transition:.2s;flex:none}
+  .qr-box:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .qr-box svg{display:block;width:100%;height:100%}
+  .qr-demo .info{font-size:13px;color:var(--ink-soft)}
+  .qr-demo .info .code{font-family:Consolas,monospace;color:var(--brand);font-weight:bold;font-size:15px;letter-spacing:.04em}
+  .qr-demo .info p{margin:8px 0 12px}
+  .hc-row{display:flex;justify-content:space-between;font-size:13px;padding:9px 0;border-top:1px dashed var(--line);color:var(--ink-soft)}
+  .hc-row b{color:var(--ink);font-weight:600}
+  .hero-seal{position:absolute;right:-26px;top:-30px;width:112px;height:112px;background:var(--brand);color:#FAF6EE;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:26px;line-height:1.3;text-align:center;transform:rotate(6deg);box-shadow:0 12px 30px rgba(154,59,38,.35);letter-spacing:.08em;padding:10px}
+
+  /* ===== 数据带 ===== */
+  .stats{background:var(--ink);color:#EDE6D8;padding:46px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center}
+  .stat .num{font-family:var(--serif);font-size:40px;color:var(--gold);font-weight:700}
+  .stat .num small{font-size:19px}
+  .stat .lbl{font-size:13px;color:#B8AE9D;margin-top:4px;letter-spacing:.06em}
+  .stat .note{font-size:11.5px;color:#8B8272}
+
+  /* ===== 痛点 ===== */
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .pain-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative;overflow:hidden;transition:.25s}
+  .pain-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .pain-card::before{content:attr(data-no);position:absolute;right:14px;top:6px;font-family:var(--serif);font-size:64px;color:var(--paper-2);font-weight:700}
+  .pain-card .icon{width:46px;height:46px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+  .pain-card h3{font-family:var(--serif);font-size:19px;margin-bottom:10px}
+  .pain-card p{font-size:14px;color:var(--ink-soft)}
+  .pain-card p b{color:var(--brand)}
+
+  /* ===== 四位一体 ===== */
+  .four-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .four-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 22px;text-align:center;transition:.25s;position:relative}
+  .four-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--gold)}
+  .four-card .icon{width:60px;height:60px;margin:0 auto 16px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px}
+  .four-card:nth-child(1) .icon{background:var(--brand-soft)}
+  .four-card:nth-child(2) .icon{background:var(--gold-soft)}
+  .four-card:nth-child(3) .icon{background:var(--tech-soft)}
+  .four-card:nth-child(4) .icon{background:#EAE4F2}
+  .four-card h3{font-family:var(--serif);font-size:19px;margin-bottom:4px}
+  .four-card .en{font-size:10px;letter-spacing:.24em;color:var(--ink-faint);display:block;margin-bottom:12px}
+  .four-card p{font-size:13.5px;color:var(--ink-soft);text-align:left}
+  .four-card p b{color:var(--brand)}
+  .chain-note{margin-top:26px;background:var(--tech-soft);border:1px solid #C9D6E5;border-radius:var(--radius);padding:18px 26px;display:flex;gap:14px;align-items:center;font-size:14px;color:var(--tech)}
+  .chain-note .ic{font-size:22px}
+
+  /* ===== 六类包装 ===== */
+  .pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pack-card{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.25s;align-items:flex-start}
+  .pack-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .pack-card .ic{width:52px;height:52px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;font-size:24px;background:linear-gradient(135deg,var(--brand-soft),var(--gold-soft));color:var(--brand)}
+  .pack-card h3{font-family:var(--serif);font-size:17px;margin-bottom:5px}
+  .pack-card .tag{display:inline-block;font-size:11.5px;color:var(--brand);background:var(--brand-soft);border-radius:6px;padding:2px 9px;margin-right:6px;margin-top:6px}
+  .pack-card p{font-size:13px;color:var(--ink-soft)}
+
+  /* ===== 溯源 ===== */
+  #trace{background:var(--paper-2);position:relative}
+  #trace::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
+  .trace-panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}
+  .trace-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .trace-form input{flex:1;min-width:240px;padding:14px 20px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;font-family:Consolas,monospace;letter-spacing:.05em;background:#fff;color:var(--ink);outline:none;transition:.2s}
+  .trace-form input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(154,59,38,.12)}
+  .chips{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;align-items:center}
+  .chips .lbl{font-size:13px;color:var(--ink-faint)}
+  .chip{font-family:Consolas,monospace;font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;transition:.2s;color:var(--ink-soft)}
+  .chip:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+  .trace-err{margin-top:14px;font-size:14px;color:#A03020;background:#F9E9E4;border:1px solid #E8C9C0;border-radius:10px;padding:10px 16px;display:none}
+
+  /* 查询结果 */
+  .trace-result{margin-top:34px;display:none}
+  .tr-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .tr-head .namebox{display:flex;align-items:center;gap:16px}
+  .tr-head h3{font-family:var(--serif);font-size:27px}
+  .tr-head .cat-badge{font-size:12px;color:#fff;background:var(--brand);border-radius:999px;padding:4px 14px;letter-spacing:.1em}
+  .tr-head .codebox{text-align:right;font-size:13px;color:var(--ink-soft)}
+  .tr-head .codebox .code{font-family:Consolas,monospace;font-size:17px;font-weight:bold;color:var(--ink)}
+  .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border-radius:999px;padding:4px 13px;background:#EDF3EA;color:#3E6B34;border:1px solid #CDE0C6;margin-top:6px}
+  .status-pill i{width:7px;height:7px;border-radius:50%;background:#3E6B34}
+
+  .profile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+  .profile-grid .cell{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:13px 16px}
+  .profile-grid .k{font-size:11.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:3px}
+  .profile-grid .v{font-size:14px;font-weight:600;color:var(--ink)}
+
+  .chain-card{background:linear-gradient(135deg,#20344B,#2C4A6E);color:#DCE6F2;border-radius:14px;padding:22px 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px}
+  .chain-card .k{font-size:11px;color:#8FA8C4;letter-spacing:.14em;margin-bottom:4px}
+  .chain-card .v{font-size:13.5px;font-weight:600;word-break:break-all}
+  .chain-card .v.mono{font-family:Consolas,monospace;font-size:12.5px;color:#AFD0A9}
+
+  .tl-title{font-family:var(--serif);font-size:20px;margin:8px 0 24px;display:flex;align-items:center;gap:12px}
+  .tl-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .timeline{position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--brand),var(--gold))}
+  .tl-node{position:relative;margin-bottom:22px}
+  .tl-node .dot{position:absolute;left:-34px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--brand);display:flex;align-items:center;justify-content:center;font-size:11px;z-index:2}
+  .tl-node .dot.done{background:var(--brand);color:#fff}
+  .tl-body{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;transition:.2s}
+  .tl-body:hover{box-shadow:var(--shadow)}
+  .tl-body .row1{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .tl-body h4{font-family:var(--serif);font-size:16.5px}
+  .tl-body .time{font-family:Consolas,monospace;font-size:13px;color:var(--ink-soft)}
+  .tl-body .place{font-size:13px;color:var(--brand);margin:4px 0 10px}
+  .kv{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 22px;font-size:13px}
+  .kv .item{display:flex;gap:8px}
+  .kv .k{color:var(--ink-faint);flex:none}
+  .kv .v{color:var(--ink);font-weight:500}
+  .onchain{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:11.5px;color:var(--tech);background:var(--tech-soft);border-radius:6px;padding:3px 10px}
+  .onchain .hash{font-family:Consolas,monospace}
+
+  .env-chart{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-top:8px}
+  .env-chart .cap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+  .env-chart .cap h4{font-family:var(--serif);font-size:17px}
+  .legend{display:flex;gap:18px;font-size:12.5px;color:var(--ink-soft)}
+  .legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  .demo-note{margin-top:26px;font-size:12.5px;color:var(--ink-faint);text-align:center}
+
+  /* ===== 模式 ===== */
+  .mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .mode-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;position:relative}
+  .mode-card .no{font-family:var(--serif);font-size:30px;color:var(--gold);font-weight:700}
+  .mode-card h3{font-family:var(--serif);font-size:17.5px;margin:8px 0 10px}
+  .mode-card p{font-size:13.5px;color:var(--ink-soft)}
+  .mode-card .fit{margin-top:12px;font-size:12px;color:var(--tech);background:var(--tech-soft);border-radius:8px;padding:6px 12px}
+
+  /* ===== 成效 ===== */
+  #impact{background:var(--paper-2)}
+  .impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .bar-block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .bar-block h3{font-family:var(--serif);font-size:19px;margin-bottom:20px}
+  .bar-row{margin-bottom:20px}
+  .bar-row .cap{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px}
+  .bar-row .cap b{color:var(--brand)}
+  .bar{height:14px;border-radius:999px;background:var(--paper-2);overflow:hidden}
+  .bar .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--brand),#C66A4E);width:0;transition:width 1.2s cubic-bezier(.22,.9,.35,1)}
+  .bar .fill.gold{background:linear-gradient(90deg,#B08A1E,var(--gold))}
+  .impact-num{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  .impact-num .cell{text-align:center;background:var(--paper);border-radius:10px;padding:14px 8px;border:1px solid var(--line)}
+  .impact-num .n{font-family:var(--serif);font-size:26px;color:var(--brand);font-weight:700}
+  .impact-num .l{font-size:12px;color:var(--ink-soft)}
+  .quote{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;position:relative}
+  .quote::before{content:"「";font-family:var(--serif);font-size:52px;color:var(--gold);position:absolute;top:6px;left:18px;line-height:1}
+  .quote p{font-size:15px;color:var(--ink);margin:16px 0 18px;line-height:1.9}
+  .quote .from{font-size:13px;color:var(--ink-faint)}
+  .quote .from b{color:var(--ink)}
+  .partners{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .partners span{font-size:12.5px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 16px;color:var(--ink-soft)}
+
+  /* ===== 规划 ===== */
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative;overflow:hidden}
+  .plan-card .stage{font-size:12px;letter-spacing:.22em;color:var(--brand);font-weight:600}
+  .plan-card h3{font-family:var(--serif);font-size:21px;margin:8px 0 14px}
+  .plan-card ul{list-style:none}
+  .plan-card li{font-size:13.5px;color:var(--ink-soft);padding:7px 0 7px 24px;position:relative;border-bottom:1px dashed var(--paper-2)}
+  .plan-card li:last-child{border:none}
+  .plan-card li::before{content:"◆";position:absolute;left:2px;color:var(--gold);font-size:10px;top:11px}
+  .plan-card .goal{margin-top:14px;background:var(--gold-soft);border-radius:10px;padding:10px 16px;font-size:13px;color:#7A6210}
+  .plan-card .goal b{font-family:var(--serif);font-size:19px}
+  .finance{margin-top:24px;display:flex;gap:16px;flex-wrap:wrap}
+  .finance .cell{flex:1;min-width:200px;background:var(--ink);color:#EDE6D8;border-radius:12px;padding:16px 22px;display:flex;align-items:center;gap:14px}
+  .finance .n{font-family:var(--serif);font-size:24px;color:var(--gold);font-weight:700;white-space:nowrap}
+  .finance .l{font-size:12.5px;color:#B8AE9D}
+
+  /* ===== 团队 ===== */
+  #team{background:var(--paper-2)}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .team-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .team-card .ic{width:50px;height:50px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px}
+  .team-card h3{font-family:var(--serif);font-size:17.5px;margin-bottom:8px}
+  .team-card p{font-size:13px;color:var(--ink-soft)}
+  .team-card p b{color:var(--brand)}
+  .value-strip{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .value-cell{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+  .value-cell .n{font-family:var(--serif);font-size:30px;color:var(--brand);font-weight:700}
+  .value-cell .n small{font-size:15px}
+  .value-cell .l{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+
+  /* ===== 页脚 ===== */
+  footer{background:var(--ink);color:#B8AE9D;padding:52px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px;margin-bottom:34px}
+  footer h4{font-family:var(--serif);color:#EDE6D8;font-size:16px;margin-bottom:14px;letter-spacing:.1em}
+  footer p{font-size:13px;line-height:2}
+  footer a{font-size:13px;display:block;padding:3px 0}
+  footer a:hover{color:var(--gold)}
+  .copy{border-top:1px solid #3D372E;padding-top:22px;font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero h1{font-size:42px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .pain-grid,.four-grid,.pack-grid,.mode-grid,.plan-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+    .impact-grid{grid-template-columns:1fr}
+    .profile-grid{grid-template-columns:repeat(2,1fr)}
+    .kv{grid-template-columns:repeat(2,1fr)}
+    .chain-card{grid-template-columns:repeat(2,1fr)}
+    .value-strip{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    section{padding:60px 0}
+    .pain-grid,.four-grid,.pack-grid,.mode-grid,.plan-grid,.team-grid{grid-template-columns:1fr}
+    .hero h1{font-size:34px}
+    .qr-demo{flex-direction:column;align-items:flex-start}
+  }
+
+  /* ===== 在线赋码 ===== */
+  .qr-url{font-family:Consolas,monospace;font-size:11.5px;color:var(--ink-faint);background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:7px 9px;word-break:break-all;line-height:1.5}
+  .tr-qr{width:166px;height:166px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;margin-top:12px}
+  .tr-qr svg{display:block;width:100%;height:100%}
+  .tr-qr-cap{font-size:11.5px;color:var(--ink-faint);margin-top:6px}
+  .mint-grid{display:grid;grid-template-columns:1fr 340px;gap:36px;align-items:start}
+  .mint-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow)}
+  .mint-form{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+  .mint-form input{flex:1;min-width:190px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;font-family:Consolas,monospace;background:#fff;color:var(--ink)}
+  .mint-form input:focus{outline:none;border-color:var(--brand)}
+  .mint-hint{font-size:12.5px;color:var(--ink-faint);margin-top:4px}
+  .mint-qr{width:250px;height:250px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}
+  .mint-qr svg{display:block;width:100%;height:100%}
+  .mint-actions{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+  .mint-list{margin-top:20px;border-top:1px dashed var(--line);padding-top:16px;font-size:13px;color:var(--ink-soft)}
+  .mint-list b{color:var(--brand)}
+  @media(max-width:900px){.mint-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ================= 导航 ================= -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#home">
+      <span class="seal">药</span>
+      <span><span class="name">药济良仓</span><span class="en">YAOJI LIANGCANG</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#pain" class="hide-sm">痛点洞察</a>
+      <a href="#service" class="hide-sm">四位一体</a>
+      <a href="#packaging" class="hide-sm">定制包装</a>
+      <a href="#trace">溯源查询</a>
+      <a href="#mint" class="hide-sm">在线赋码</a>
+      <a href="#impact" class="hide-sm">落地成效</a>
+      <a href="#plan" class="hide-sm">发展规划</a>
+      <a href="#team" class="hide-sm">团队</a>
+      <a href="#trace" class="nav-cta">扫码溯源</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= Hero ================= -->
+<header class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-badge"><i></i>贵州医科大学 · 本草智运队 · 创新创意组</span>
+      <h1>药济<span class="accent">良仓</span></h1>
+      <div class="sub">中药包装物流一体化服务平台</div>
+      <p class="lead">面向中小药企与种植户，构建<b>分类包装 + 专业仓储 + 温控物流 + 区块链溯源</b>四位一体服务体系。一物一码，让每一味药材<b>来路清明、去向可查</b>。</p>
+      <div class="btns">
+        <button class="btn btn-primary" onclick="jumpToTrace()">扫码 · 体验溯源查询</button>
+        <a class="btn btn-ghost" href="#service">了解四位一体服务</a>
+      </div>
+      <div class="hero-tags">
+        <span>药材损耗率 <b>10% → 2% 以下</b></span>
+        <span>综合成本 <b>↓ 20%~30%</b></span>
+        <span><b>GSP</b> 合规仓储</span>
+        <span>联盟链存证 <b>不可篡改</b></span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-seal">道地<br>药材</div>
+      <div class="hc-title">溯源一物一码 <em>扫码即查</em></div>
+      <div class="qr-demo">
+        <div class="qr-box" id="heroQr" title="点击体验溯源查询"></div>
+        <div class="info">
+          <div class="code" id="heroQrCode">YJLC-2026-TM-0001</div>
+          <p>手机扫一扫，直达这盒<b>贵州大方天麻</b>的溯源页面，查看从基地到药房的完整履历。</p>
+          <div class="qr-url" id="heroQrUrl"></div>
+          <div class="hc-row"><span>查询次数</span><b>3,921 次</b></div>
+          <div class="hc-row"><span>累计赋码</span><b>52,867 枚</b></div>
+          <div class="hc-row"><span>上链存证</span><b>100%</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 数据带 ================= -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="num" data-count="7500">0<small>亿+</small></div><div class="lbl">2024 年中国中药行业市场规模</div><div class="note">流通环节损耗严重、造假乱象频发</div></div>
+    <div class="stat"><div class="num" data-count="10">0<small>%</small></div><div class="lbl">中药材流通环节损耗率</div><div class="note">山区阴冷潮湿，普通包装难以护药</div></div>
+    <div class="stat"><div class="num" data-count="12">0<small>%</small></div><div class="lbl">产地 / 采收时间 / 储存条件标注率</div><div class="note">道地产区真假难辨，溯源系统缺失</div></div>
+    <div class="stat"><div class="num" data-count="67">0<small>%</small></div><div class="lbl">采购商无法核实药材产地与采收期</div><div class="note">源于项目组 30 天实地调研（问卷 1,100+ 份）</div></div>
+  </div>
+</div>
+
+<!-- ================= 痛点 ================= -->
+<section id="pain">
+  <div class="wrap">
+    <span class="kicker reveal">PAIN POINTS</span>
+    <h2 class="sec-title reveal">行业痛点，亦是机遇所在</h2>
+    <p class="sec-sub reveal">贵州地处山区、常年阴冷潮湿，而省内多数中小药材主体仍处于<b>“散、乱、小”</b>的流通状态——项目组历时 30 天走访个体户 76 家、药农 200 户、摊贩 150 名，把真实痛点带回实验室。</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal" data-no="01">
+        <div class="icon">🌫️</div>
+        <h3>包装不专业，湿气成杀手</h3>
+        <p>山区常年阴冷潮湿，本地多数中小主体仍沿用<b>普通塑料袋</b>，无法隔绝外部湿气侵袭，霉变虫蛀频发——调研中 <b>100% 的中小商户无温湿度控制设备</b>。</p>
+      </div>
+      <div class="pain-card reveal" data-no="02">
+        <div class="icon">🏚️</div>
+        <h3>仓储不规范，民房当仓库</h3>
+        <p>多数农户与中小药企的仓库实为<b>民房或简易棚屋</b>，无分区、无温控、无养护记录，药材在仓库里“听天由命”。</p>
+      </div>
+      <div class="pain-card reveal" data-no="03">
+        <div class="icon">📋</div>
+        <h3>溯源缺失，台账碎片化</h3>
+        <p>中药饮片企业虽有电子追溯系统，但中小主体<b>仍用纸质台账甚至无台账</b>，信息碎片化无法互通；76% 的受访药农反映运输损耗超过 10%。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 四位一体 ================= -->
+<section id="service" style="background:var(--paper-2)">
+  <div class="wrap">
+    <span class="kicker reveal">FOUR-IN-ONE</span>
+    <h2 class="sec-title reveal">四位一体服务体系</h2>
+    <p class="sec-sub reveal">针对不同药材特性定制专用包装，配套<b>分区温控仓储</b>与<b>全链路物流配送</b>，每一个环节的数据实时上链、互相印证。</p>
+    <div class="four-grid">
+      <div class="four-card reveal">
+        <div class="icon">📦</div>
+        <h3>分类包装</h3><span class="en">CUSTOM PACKAGING</span>
+        <p>紧抓中草药 <b>6 小时黄金加工窗口期</b>，按六大药材类别提供专属定制包装，从源头阻断泛油、虫蛀、霉变。</p>
+      </div>
+      <div class="four-card reveal">
+        <div class="icon">🏭</div>
+        <h3>专业仓储</h3><span class="en">SMART WAREHOUSING</span>
+        <p><b>分区温控仓储</b>满足不同药材存储需求，温湿度实时监控、自动告警，GSP 合规台账同步生成。</p>
+      </div>
+      <div class="four-card reveal">
+        <div class="icon">🚚</div>
+        <h3>温控物流</h3><span class="en">COLD-CHAIN LOGISTICS</span>
+        <p>整合合规物流资源，<b>全链路温控配送</b>，温湿度每 5 分钟自动上报，全程冷链不断链。</p>
+      </div>
+      <div class="four-card reveal">
+        <div class="icon">🔗</div>
+        <h3>区块链溯源</h3><span class="en">BLOCKCHAIN TRACE</span>
+        <p><b>一物一码</b>，种植、检测、包装、仓储、运输、签收全流程节点存证上链，数据不可篡改。</p>
+      </div>
+    </div>
+    <div class="chain-note reveal"><span class="ic">🛡️</span><span>依托<b>贵州医科大学中药功效成分发掘与利用全国重点实验室</b>与<b>道地药材慢性病防治工程研究中心</b>提供检测与科研支撑；底层采用联盟链架构，监管节点共同记账。</span></div>
+  </div>
+</section>
+
+<!-- ================= 六类包装 ================= -->
+<section id="packaging">
+  <div class="wrap">
+    <span class="kicker reveal">PACKAGING MATRIX</span>
+    <h2 class="sec-title reveal">六大类定制包装体系</h2>
+    <p class="sec-sub reveal">不同药材，不同的“性格”——药材特性分类建档，一类一策，精准防护。</p>
+    <div class="pack-grid">
+      <div class="pack-card reveal"><div class="ic">🫜</div><div><h3>根及根茎类</h3><span class="tag">真空防潮</span><span class="tag">防泛油虫蛀</span><p>天麻、太子参等，控湿防蛀，锁住有效成分。</p></div></div>
+      <div class="pack-card reveal"><div class="ic">🌿</div><div><h3>花叶全草类</h3><span class="tag">高阻隔避光</span><span class="tag">锁香护色</span><p>金银花、艾叶等，避光防氧化，保色保香。</p></div></div>
+      <div class="pack-card reveal"><div class="ic">🌰</div><div><h3>果实种子类</h3><span class="tag">真空防潮</span><span class="tag">防干裂护韧</span><p>枸杞、薏苡仁等，防失水干裂，保持油润。</p></div></div>
+      <div class="pack-card reveal"><div class="ic">🪵</div><div><h3>皮类药材</h3><span class="tag">真空排氧</span><span class="tag">防泛油霉变</span><p>杜仲、厚朴等，隔绝氧气，杜绝霉变泛油。</p></div></div>
+      <div class="pack-card reveal"><div class="ic">💠</div><div><h3>贵细类药材</h3><span class="tag">真空 + 礼盒</span><span class="tag">一物一码防伪</span><p>铁皮石斛、天麻特级品等，双重防护 + 防伪溯源。</p></div></div>
+      <div class="pack-card reveal"><div class="ic">🧺</div><div><h3>普通类药材</h3><span class="tag">经济防潮</span><span class="tag">防虫防碎</span><p>大宗常用药材，降本增效，可降解环保材质。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 溯源查询（核心交互） ================= -->
+<section id="trace">
+  <div class="wrap">
+    <span class="kicker reveal">TRACEABILITY</span>
+    <h2 class="sec-title reveal">一物一码 · 溯源查询</h2>
+    <p class="sec-sub reveal">输入溯源码或扫描包装二维码，即可查验药材<b>从基地到终端的完整履历</b>与区块链存证。</p>
+
+    <div class="trace-panel reveal">
+      <div class="trace-form">
+        <input id="traceInput" type="text" placeholder="请输入溯源码，如 YJLC-2026-TM-0001" maxlength="30" autocomplete="off">
+        <button class="btn btn-primary" onclick="doTrace()">立即查询</button>
+      </div>
+      <div class="chips">
+        <span class="lbl">示例码：</span>
+        <button class="chip" onclick="fillCode('YJLC-2026-TM-0001')">大方天麻（贵细类）</button>
+        <button class="chip" onclick="fillCode('YJLC-2026-TS-0002')">施秉太子参（根茎类）</button>
+        <button class="chip" onclick="fillCode('YJLC-2026-SH-0003')">兴义铁皮石斛（贵细类）</button>
+      </div>
+      <div class="trace-err" id="traceErr"></div>
+
+      <div class="trace-result" id="traceResult">
+        <div class="tr-head">
+          <div class="namebox">
+            <h3 id="trName">—</h3>
+            <span class="cat-badge" id="trCat">—</span>
+          </div>
+          <div class="codebox">
+            <div>溯源码</div>
+            <div class="code" id="trCode">—</div>
+            <div class="status-pill"><i></i><span id="trStatus">已签收 · 溯源码已激活</span></div>
+            <div class="tr-qr" id="trQr" title="扫码直达本页溯源结果"></div>
+            <div class="tr-qr-cap">扫码直达本批溯源页</div>
+          </div>
+        </div>
+
+        <div class="profile-grid" id="trProfile"></div>
+
+        <div class="chain-card" id="trChain"></div>
+
+        <div class="tl-title">全链路溯源履历</div>
+        <div class="timeline" id="trTimeline"></div>
+
+        <div class="env-chart">
+          <div class="cap">
+            <h4>运输全程温湿度监控</h4>
+            <div class="legend">
+              <span><i style="background:var(--brand)"></i>温度 °C</span>
+              <span><i style="background:var(--tech)"></i>相对湿度 %</span>
+              <span style="color:var(--ink-faint)">每 5 分钟自动上报 · 数据同步上链</span>
+            </div>
+          </div>
+          <div id="envSvg"></div>
+        </div>
+
+        <div class="demo-note">* 本页为平台功能演示环境，展示数据为示例数据；正式上线后接入各环节真实采集数据。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= 在线赋码 ================= -->
+<section id="mint">
+  <div class="wrap">
+    <span class="kicker reveal">CODE ISSUING</span>
+    <h2 class="sec-title reveal">在线赋码 · 一物一码</h2>
+    <p class="sec-sub reveal">输入批次溯源码即可生成<b>可直接扫码访问的二维码</b>，下载后贴于包装，消费者扫码直达该批次溯源页。</p>
+    <div class="mint-grid">
+      <div class="mint-card reveal">
+        <div class="mint-form">
+          <input id="mintCode" type="text" value="YJLC-2026-TM-0001" maxlength="40" placeholder="输入溯源码，如 YJLC-2026-TM-0001">
+          <button class="btn btn-primary" onclick="doMint()">生成二维码</button>
+        </div>
+        <div class="mint-hint">支持任意批次编号；生成内容为该批次溯源页网址，扫码后自动打开并展示完整履历。</div>
+        <div class="mint-list">
+          <div>▸ 赋码方式：<b>一物一码</b>（最小包装单枚码），支持批量导入 Excel 后批量出码</div>
+          <div>▸ 码制标准：QR Code · 纠错等级 <b>M 级</b>，包装磨损 15% 仍可识别</div>
+          <div>▸ 防伪能力：码面 + 区块链存证双校验，<b>首次查询即激活</b>，重复扫码自动预警</div>
+          <div>▸ 已赋码：<b>52,867</b> 枚 · 覆盖大方天麻、施秉太子参、兴义铁皮石斛等 <b>18</b> 个品种</div>
+        </div>
+      </div>
+      <div class="mint-card reveal">
+        <div class="mint-qr" id="mintQr"></div>
+        <div class="qr-url" id="mintQrUrl" style="margin-top:14px"></div>
+        <div class="mint-actions">
+          <button class="btn btn-primary" onclick="downloadQr(document.getElementById('mintQr'), 'YJLC-QR.png')">下载 PNG</button>
+          <button class="btn btn-ghost" onclick="openMintUrl()">打开链接预览</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 运营模式 ================= -->
+<section id="mode">
+  <div class="wrap">
+    <span class="kicker reveal">OPERATING MODEL</span>
+    <h2 class="sec-title reveal">四种运营模式，按需适配</h2>
+    <p class="sec-sub reveal">从产地到全国，一套可组合的物流方法论。</p>
+    <div class="mode-grid">
+      <div class="mode-card reveal"><div class="no">01</div><h3>产地集约型物流</h3><p>采收即入库、产地分等分级、集中包装养护，有效解决“散、乱、小”。</p><div class="fit">适合：贵州道地药材主产区（天麻、石斛）</div></div>
+      <div class="mode-card reveal"><div class="no">02</div><h3>供应链整合物流</h3><p>基地直供、订单农业、一体化物流中心建设，提升产业协同效率。</p><div class="fit">适合：大型链主企业 / 公司+合作社</div></div>
+      <div class="mode-card reveal"><div class="no">03</div><h3>第三方专业物流</h3><p>GSP 合规仓储、冷链运输、全程溯源的社会化服务，解决“最后一公里”。</p><div class="fit">适合：中小药企 / 电商零售端</div></div>
+      <div class="mode-card reveal"><div class="no">04</div><h3>数字化智能物流</h3><p>物联网 + 区块链 + 大数据，智能仓储、温湿度实时监控、全流程可视化。</p><div class="fit">适合：全链路数字化升级场景</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 落地成效 ================= -->
+<section id="impact">
+  <div class="wrap">
+    <span class="kicker reveal">PROVEN RESULTS</span>
+    <h2 class="sec-title reveal">落地成效，数据说话</h2>
+    <p class="sec-sub reveal">与<b>贵州优胜美达物流有限公司</b>深度合作，推动其运营模式数字化转型，成果经企业实践验证。</p>
+    <div class="impact-grid">
+      <div class="bar-block reveal">
+        <h3>上线前后关键指标对比</h3>
+        <div class="bar-row">
+          <div class="cap"><span>药材运输损耗率（上线前）</span><b>近 10%</b></div>
+          <div class="bar"><div class="fill" data-w="95%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="cap"><span>药材运输损耗率（上线后）</span><b>2% 以内</b></div>
+          <div class="bar"><div class="fill gold" data-w="19%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="cap"><span>客户综合成本</span><b>降低 20%~30%</b></div>
+          <div class="bar"><div class="fill gold" data-w="75%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="cap"><span>分拣效率</span><b>显著提升</b></div>
+          <div class="bar"><div class="fill" data-w="88%"></div></div>
+        </div>
+        <div class="impact-num">
+          <div class="cell"><div class="n">-80%</div><div class="l">损耗率降幅</div></div>
+          <div class="cell"><div class="n">GSP</div><div class="l">合规仓储管控</div></div>
+          <div class="cell"><div class="n">100%</div><div class="l">节点数据上链</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="quote reveal">
+          <p>药济良仓的包装溯源一体化服务上线后，我司分拣效率明显提升，药材运输损耗从近 10% 降到 2% 以内，客户投诉量大幅下降，合作成效超出预期。</p>
+          <div class="from">—— <b>贵州优胜美达物流有限公司</b> 运营负责人</div>
+        </div>
+        <div class="partners reveal">
+          <span>🤝 贵州优胜美达物流有限公司</span>
+          <span>🏫 贵州医科大学</span>
+          <span>🔬 中药功效成分发掘与利用全国重点实验室</span>
+          <span>⚕️ 道地药材慢性病防治工程研究中心</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 发展规划 ================= -->
+<section id="plan">
+  <div class="wrap">
+    <span class="kicker reveal">ROADMAP</span>
+    <h2 class="sec-title reveal">三阶段打造中药溯源 + 包装物流全国平台</h2>
+    <p class="sec-sub reveal">以草本为根 · 以数智为翼，从贵州试点走向全国生态。</p>
+    <div class="plan-grid">
+      <div class="plan-card reveal">
+        <div class="stage">PHASE 1 · 试点拓展</div>
+        <h3>立足贵州，跑通模式</h3>
+        <ul>
+          <li>完成五类包装袋量产，溯源基础版上线</li>
+          <li>服务 50 余家客户，覆盖贵州主要城市</li>
+          <li>仓储扩至 500㎡，实现盈亏平衡</li>
+        </ul>
+        <div class="goal">首年目标营收 <b>100 万</b>元 · 收支平衡</div>
+      </div>
+      <div class="plan-card reveal">
+        <div class="stage">PHASE 2 · 品牌标准</div>
+        <h3>区域标杆，标准引领</h3>
+        <ul>
+          <li>服务客户 300 余家，上线溯源企业版与 API 对接</li>
+          <li>参与行业标准制定，成为区域标杆</li>
+          <li>多业务协同，形成规模效应</li>
+        </ul>
+        <div class="goal">年营收突破 <b>2000 万</b>元</div>
+      </div>
+      <div class="plan-card reveal">
+        <div class="stage">PHASE 3 · 全国生态</div>
+        <h3>一体生态，全国网络</h3>
+        <ul>
+          <li>覆盖全国主要中药材市场</li>
+          <li>构建“溯源+包装+仓储+物流+金融”一体化生态</li>
+          <li>建成全国中药溯源网络</li>
+        </ul>
+        <div class="goal">平台年交易额突破 <b>1 亿</b>元</div>
+      </div>
+    </div>
+    <div class="finance reveal">
+      <div class="cell"><span class="n">60 万</span><span class="l">创业启动资金已落实<br>规划注册企业 · 覆盖包装/仓储/溯源/存证</span></div>
+      <div class="cell"><span class="n">100 万</span><span class="l">运营第一年目标营收<br>达成整体收支平衡</span></div>
+      <div class="cell"><span class="n">2670 万</span><span class="l">运营第三年目标营收<br>净利润率 20% 以上</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 团队 ================= -->
+<section id="team">
+  <div class="wrap">
+    <span class="kicker reveal">TEAM</span>
+    <h2 class="sec-title reveal">本草智运队 · 多学科交叉</h2>
+    <p class="sec-sub reveal">贵州医科大学「本草智运队」——药学、法学、物流、市场多学科协作，分工明确、各展所长；双导师护航，产学研一体。</p>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="ic">🎓</div>
+        <h3>科研与资源支撑</h3>
+        <p>依托<b>中药功效成分发掘与利用全国重点实验室</b>与<b>道地药材慢性病防治工程研究中心</b>，以科研技术赋能现代中草药物流，指导核心技术攻关与专利申报。</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="ic">🚛</div>
+        <h3>产业落地支撑</h3>
+        <p>依托项目负责人家族产业<b>贵州优胜美达物流有限公司</b>，深耕本土物流全链路运营，为项目提供真实的仓储、运力与客户资源。</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="ic">🧭</div>
+        <h3>赛创指导支撑</h3>
+        <p>创新创业导师主持省地厅级课题 4 项，在“挑战杯”、中国国际大学生创新大赛等赛事省级获奖 10 余项，负责商业模式落地与政策申报。</p>
+      </div>
+    </div>
+    <div class="value-strip">
+      <div class="value-cell reveal"><div class="n">25<small> 个</small></div><div class="l">直接就业岗位</div></div>
+      <div class="value-cell reveal"><div class="n">100<small>+</small></div><div class="l">间接带动就业</div></div>
+      <div class="value-cell reveal"><div class="n">可降解</div><div class="l">环保包装推广</div></div>
+      <div class="value-cell reveal"><div class="n">60%<small>+</small></div><div class="l">损耗直降幅度</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页脚 ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>药济良仓</h4>
+        <p>传承道地本草 · 创新数智物流<br>分类包装 / 专业仓储 / 温控物流 / 区块链溯源<br>贵州医科大学 · 本草智运队 · 创新创意组</p>
+      </div>
+      <div>
+        <h4>平台</h4>
+        <a href="#trace">溯源查询</a>
+        <a href="#packaging">定制包装体系</a>
+        <a href="#service">四位一体服务</a>
+        <a href="#plan">发展规划</a>
+      </div>
+      <div>
+        <h4>合作</h4>
+        <a href="#impact">贵州优胜美达物流</a>
+        <a href="#team">贵州医科大学</a>
+        <a href="#team">全国重点实验室</a>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 药济良仓 YAOJI LIANGCANG · 中药包装物流一体化服务平台</span>
+      <span>底层链：药济链 YJL-Chain（联盟链） · 贵州贵阳</span>
+    </div>
+  </div>
+</footer>
+
+<script>/*! qrcode-generator (MIT) */
+//---------------------------------------------------------------------
+//
+// QR Code Generator for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//  http://www.opensource.org/licenses/mit-license.php
+//
+// The word 'QR Code' is registered trademark of
+// DENSO WAVE INCORPORATED
+//  http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+
+var qrcode = function() {
+
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+
+      for (var r = -1; r <= 7; r += 1) {
+
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+
+        for (var c = -1; c <= 7; c += 1) {
+
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+
+      var minLostPoint = 0;
+      var pattern = 0;
+
+      for (var i = 0; i < 8; i += 1) {
+
+        makeImpl(true, i);
+
+        var lostPoint = QRUtil.getLostPoint(_this);
+
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+
+      for (var i = 0; i < pos.length; i += 1) {
+
+        for (var j = 0; j < pos.length; j += 1) {
+
+          var row = pos[i];
+          var col = pos[j];
+
+          if (_modules[row][col] != null) {
+            continue;
+          }
+
+          for (var r = -2; r <= 2; r += 1) {
+
+            for (var c = -2; c <= 2; c += 1) {
+
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+
+        if (col == 6) col -= 1;
+
+        while (true) {
+
+          for (var c = 0; c < 2; c += 1) {
+
+            if (_modules[row][col - c] == null) {
+
+              var dark = false;
+
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+
+              var mask = maskFunc(row, col - c);
+
+              if (mask) {
+                dark = !dark;
+              }
+
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+
+          row += inc;
+
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+
+      var offset = 0;
+
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+
+        dcdata[r] = new Array(dcCount);
+
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+
+      var data = new Array(totalCodeCount);
+      var index = 0;
+
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+
+      var buffer = qrBitBuffer();
+
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+
+      // padding
+      while (true) {
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+
+      mode = mode || 'Byte';
+
+      var newData = null;
+
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+
+        _typeNumber = typeNumber;
+      }
+
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.createTableTag = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var qrHtml = '';
+
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+
+        qrHtml += '<tr>';
+
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+
+        qrHtml += '</tr>';
+      }
+
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+
+      return qrHtml;
+    };
+
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+
+      return qrSvg;
+    };
+
+    _this.createDataURL = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+
+    _this.createImgTag = function(cellSize, margin, alt) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+
+      return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r1, r2, p;
+
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+
+        ascii += '\n';
+      }
+
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r, p;
+
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(row * cellSize, col * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+
+    // create conversion map.
+
+    var unicodeMap = function() {
+
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+
+      return unicodeMap;
+    }();
+
+    var unknownChar = '?'.charCodeAt(0);
+
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+
+  var QRUtil = function() {
+
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+
+    var _this = {};
+
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+
+    _this.getMaskFunction = function(maskPattern) {
+
+      switch (maskPattern) {
+
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+
+      if (1 <= type && type < 10) {
+
+        // 1 - 9
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 27) {
+
+        // 10 - 26
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 41) {
+
+        // 27 - 40
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else {
+        throw 'type:' + type;
+      }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+
+      var moduleCount = qrcode.getModuleCount();
+
+      var lostPoint = 0;
+
+      // LEVEL1
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+
+          for (var r = -1; r <= 1; r += 1) {
+
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+
+            for (var c = -1; c <= 1; c += 1) {
+
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+
+              if (r == 0 && c == 0) {
+                continue;
+              }
+
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+
+      // LEVEL2
+
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+
+      // LEVEL3
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      // LEVEL4
+
+      var darkCount = 0;
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+
+  var QRMath = function() {
+
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+
+    var _this = {};
+
+    _this.glog = function(n) {
+
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+
+      return LOG_TABLE[n];
+    };
+
+    _this.gexp = function(n) {
+
+      while (n < 0) {
+        n += 255;
+      }
+
+      while (n >= 256) {
+        n -= 255;
+      }
+
+      return EXP_TABLE[n];
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+
+  function qrPolynomial(num, shift) {
+
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+
+    var _this = {};
+
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+
+    _this.getLength = function() {
+      return _num.length;
+    };
+
+    _this.multiply = function(e) {
+
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+
+      return qrPolynomial(num, 0);
+    };
+
+    _this.mod = function(e) {
+
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+
+  var QRRSBlock = function() {
+
+    var RS_BLOCK_TABLE = [
+
+      // L
+      // M
+      // Q
+      // H
+
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+
+      var length = rsBlock.length / 3;
+
+      var list = [];
+
+      for (var i = 0; i < length; i += 1) {
+
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+
+      return list;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+
+  var qrBitBuffer = function() {
+
+    var _buffer = [];
+    var _length = 0;
+
+    var _this = {};
+
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+
+    _this.putBit = function(bit) {
+
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+
+      _length += 1;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+
+  var qrNumber = function(data) {
+
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _data;
+
+      var i = 0;
+
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+
+  var qrAlphaNum = function(data) {
+
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var s = _data;
+
+      var i = 0;
+
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+
+    var getCode = function(c) {
+
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+
+  var qr8BitByte = function(data) {
+
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+
+  var qrKanji = function(data) {
+
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+
+    var _bytes = stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _bytes;
+
+      var i = 0;
+
+      while (i + 1 < data.length) {
+
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+
+        buffer.put(c, 13);
+
+        i += 2;
+      }
+
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+
+    return _this;
+  };
+
+  //=====================================================================
+  // GIF Support etc.
+  //
+
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+
+  var byteArrayOutputStream = function() {
+
+    var _bytes = [];
+
+    var _this = {};
+
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+
+  var base64EncodeOutputStream = function() {
+
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+
+    var _this = {};
+
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+
+    _this.writeByte = function(n) {
+
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+
+    _this.flush = function() {
+
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+
+    _this.toString = function() {
+      return _base64;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+
+  var base64DecodeInputStream = function(str) {
+
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+
+    var _this = {};
+
+    _this.read = function() {
+
+      while (_buflen < 8) {
+
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+
+        var c = _str.charAt(_pos);
+        _pos += 1;
+
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+
+  var gifImage = function(width, height) {
+
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+
+    var _this = {};
+
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+
+    _this.write = function(out) {
+
+      //---------------------------------
+      // GIF Signature
+
+      out.writeString('GIF87a');
+
+      //---------------------------------
+      // Screen Descriptor
+
+      out.writeShort(_width);
+      out.writeShort(_height);
+
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Global Color Map
+
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+
+      //---------------------------------
+      // Image Descriptor
+
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Local Color Map
+
+      //---------------------------------
+      // Raster Data
+
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+
+      out.writeByte(lzwMinCodeSize);
+
+      var offset = 0;
+
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+
+    var bitOutputStream = function(out) {
+
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+
+      var _this = {};
+
+      _this.write = function(data, length) {
+
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+
+      return _this;
+    };
+
+    var getLZWRaster = function(lzwMinCodeSize) {
+
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+
+      // Setup LZWTable
+      var table = lzwTable();
+
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+
+      // clear code
+      bitOut.write(clearCode, bitLength);
+
+      var dataIndex = 0;
+
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+
+      while (dataIndex < _data.length) {
+
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+
+        if (table.contains(s + c) ) {
+
+          s = s + c;
+
+        } else {
+
+          bitOut.write(table.indexOf(s), bitLength);
+
+          if (table.size() < 0xfff) {
+
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+
+            table.add(s + c);
+          }
+
+          s = c;
+        }
+      }
+
+      bitOut.write(table.indexOf(s), bitLength);
+
+      // end code
+      bitOut.write(endCode, bitLength);
+
+      bitOut.flush();
+
+      return byteOut.toByteArray();
+    };
+
+    var lzwTable = function() {
+
+      var _map = {};
+      var _size = 0;
+
+      var _this = {};
+
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+
+      _this.size = function() {
+        return _size;
+      };
+
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+
+      return _this;
+    };
+
+    return _this;
+  };
+
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+
+    var b = byteArrayOutputStream();
+    gif.write(b);
+
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+
+    return 'data:image/gif;base64,' + base64;
+  };
+
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+
+  return qrcode;
+}();
+
+// multibyte support
+!function() {
+
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+
+}();
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+      define([], factory);
+  } else if (typeof exports === 'object') {
+      module.exports = factory();
+  }
+}(function () {
+    return qrcode;
+}));
+
+</script>
+<script>
+/* ================== 二维码：由 qrcode 库按当前网址动态生成 ================== */
+
+/* ================== 溯源数据库（示例数据） ================== */
+function hashHex(seed, len){ // 稳定伪随机哈希（演示用）
+  let h = 2166136261;
+  for (let i=0;i<seed.length;i++){ h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+  let out = '';
+  while (out.length < len){
+    h ^= h<<13; h ^= h>>>17; h ^= h<<5;
+    out += (h>>>0).toString(16).padStart(8,'0');
+  }
+  return out.slice(0, len);
+}
+
+const TRACE_DB = {
+  "YJLC-2026-TM-0001": {
+    name: "贵州大方天麻（特级鲜麻）", cat: "贵细类药材",
+    profile: [
+      ["药材名称","贵州大方天麻"],["产地","贵州 · 毕节市大方县"],
+      ["执行标准","《中国药典》2025年版"],["规格","特级 · 260kg / 批"],
+      ["采收日期","2026-11-02（冬麻）"],["保质期","冷藏条件下 90 天"],
+      ["检测报告","GYMU-QC-2026-1108"],["包装批次","PB-2026-11-02-TM"],
+    ],
+    chain: { height:"9,384,216", time:"2026-11-02 14:31:07", nodes:"合作社 · 检测 · 仓储 · 物流 · 监管 · 平台" },
+    env: { title:"冷链运输 · 大方县 → 贵阳市（178km · 4h12m）", lo:2, hi:8,
+      temp:[5.1,4.6,4.2,3.9,4.4,4.8,5.2,4.9,4.1,3.8,4.0,4.5,5.0,5.4,4.7,4.3,3.9,4.2,4.8,5.3,5.6,5.0,4.6,4.4],
+      hum:[58,57,59,61,60,58,57,59,62,63,61,59,58,57,59,60,62,61,59,58,57,58,59,60] },
+    nodes: [
+      { ic:"🌱", t:"基地种植", time:"2024-03-12 10:20", place:"贵州省毕节市大方县凤山乡 · 基地三区（海拔 1,520m）",
+        kv:[["栽培方式","林下仿野生（菌材+蜜环菌）"],["种植主体","大方县新民天麻种植专业合作社"],["基地编号","YJLC-BASE-GZ-017"],["生长周期","20 个月"]] },
+      { ic:"🧺", t:"采收分级", time:"2026-11-02 09:20", place:"基地三区 · 采收现场",
+        kv:[["品级","特级鲜麻（单只 ≥ 150g）"],["采收数量","260 kg"],["分级员","王明富"],["首次赋码","2026-11-02 10:05"]] },
+      { ic:"🔬", t:"质量检测", time:"2026-11-02 12:40", place:"贵州医科大学 · 中药功效成分发掘与利用全国重点实验室（联合检测）",
+        kv:[["天麻素含量","0.42%（药典 ≥ 0.25%）"],["水分","12.8%"],["二氧化硫","未检出"],["农残（33项）","全部合格"]] },
+      { ic:"📦", t:"分类包装", time:"2026-11-02 14:30", place:"良仓 · 产地前置仓（大方）",
+        kv:[["包装方案","贵细类 · 真空 + 礼盒 + 一物一码防伪"],["加工窗口","采收后 6 小时内完成"],["包装批次","PB-2026-11-02-TM"],["车间洁净级","十万级"]] },
+      { ic:"🏭", t:"温控入库", time:"2026-11-02 16:45", place:"良仓 · 冷藏库 B-02",
+        kv:[["库温","2~8°C（实时 4.1°C）"],["相对湿度","65%"],["仓库管理","吴秀珍"],["GSP 台账","同步生成"]] },
+      { ic:"🚚", t:"冷链运输", time:"2026-11-04 08:00", place:"大方县 → 贵阳市（178km）",
+        kv:[["冷藏车","贵A·D87K2"],["全程温度","3.8~6.4°C · 达标"],["温湿度记录","每 5 分钟自动上报"],["驾驶员","张成"]] },
+      { ic:"✅", t:"终端签收", time:"2026-11-04 14:35", place:"贵阳济世堂大药房（演示）",
+        kv:[["签收人","李慧"],["码状态","已激活 · 首次查询"],["质检随行","报告同步查验"],["售后通道","平台客服在线"]] },
+    ],
+  },
+  "YJLC-2026-TS-0002": {
+    name: "贵州施秉太子参（一级）", cat: "根及根茎类",
+    profile: [
+      ["药材名称","贵州施秉太子参"],["产地","贵州 · 黔东南州施秉县牛大场镇"],
+      ["执行标准","《中国药典》2025年版"],["规格","一级 · 520kg / 批"],
+      ["采收日期","2026-07-15（夏季采挖）"],["保质期","阴凉干燥 24 个月"],
+      ["检测报告","GYMU-QC-2026-0715"],["包装批次","PB-2026-07-15-TS"],
+    ],
+    chain: { height:"9,291,507", time:"2026-07-15 12:52:40", nodes:"合作社 · 检测 · 仓储 · 物流 · 监管 · 平台" },
+    env: { title:"恒温运输 · 施秉县 → 贵阳市（260km · 5h40m）", lo:15, hi:25,
+      temp:[21.4,21.0,20.6,20.2,19.8,19.5,19.1,18.8,18.6,18.5,18.7,19.0,19.4,19.8,20.3,20.8,21.2,21.5,21.8,21.6,21.3,21.0,20.8,20.5],
+      hum:[48,49,50,51,52,53,54,54,55,55,54,53,52,51,50,49,48,48,47,48,49,50,51,51] },
+    nodes: [
+      { ic:"🌱", t:"基地种植", time:"2025-11-20 09:00", place:"贵州省黔东南州施秉县牛大场镇（海拔 820m）",
+        kv:[["栽培方式","玉米-参轮作 · 生态种植"],["种植主体","施秉县牛大场太子参种植专业合作社"],["基地编号","YJLC-BASE-GZ-032"],["种源","本地选育 · 自留种"]] },
+      { ic:"🧺", t:"采收分级", time:"2026-07-15 07:30", place:"基地一区 · 采收现场",
+        kv:[["品级","一级（条粗均匀）"],["采收数量","520 kg"],["分级员","杨正勇"],["首次赋码","2026-07-15 08:15"]] },
+      { ic:"🔬", t:"质量检测", time:"2026-07-15 10:50", place:"贵州医科大学 · 中药功效成分发掘与利用全国重点实验室（联合检测）",
+        kv:[["水分","10.2%（≤ 13.0%）"],["总灰分","3.1%（药典 ≤ 4.0%）"],["二氧化硫残留","未检出"],["农残（33项）","全部合格"]] },
+      { ic:"📦", t:"分类包装", time:"2026-07-15 12:40", place:"良仓 · 产地前置仓（施秉）",
+        kv:[["包装方案","根及根茎类 · 真空防潮（防泛油虫蛀）"],["加工窗口","采收后 6 小时内完成"],["包装批次","PB-2026-07-15-TS"],["干燥处理","低温干燥至水分达标"]] },
+      { ic:"🏭", t:"温控入库", time:"2026-07-15 14:20", place:"良仓 · 阴凉库 A-01",
+        kv:[["库温","≤ 20°C（实时 18.6°C）"],["相对湿度","48%"],["仓库管理","刘承勇"],["GSP 台账","同步生成"]] },
+      { ic:"🚚", t:"恒温运输", time:"2026-07-18 09:00", place:"施秉县 → 贵阳市（260km）",
+        kv:[["恒温车","贵H·K2M95"],["全程温度","18.2~21.5°C · 达标"],["温湿度记录","每 5 分钟自动上报"],["驾驶员","罗小军"]] },
+      { ic:"✅", t:"终端签收", time:"2026-07-18 15:10", place:"贵州百草饮片有限公司（演示）",
+        kv:[["签收人","周丽"],["码状态","已激活 · 首次查询"],["质检随行","报告同步查验"],["入库抽检","复核合格"]] },
+    ],
+  },
+  "YJLC-2026-SH-0003": {
+    name: "贵州兴义铁皮石斛（三年生鲜条）", cat: "贵细类药材",
+    profile: [
+      ["药材名称","贵州兴义铁皮石斛"],["产地","贵州 · 黔西南州兴义市敬南镇"],
+      ["执行标准","《中国药典》2025年版"],["规格","三年生鲜条 · 180kg / 批"],
+      ["采收日期","2026-10-20（霜降前）"],["保质期","冷藏条件下 60 天"],
+      ["检测报告","GYMU-QC-2026-1020"],["包装批次","PB-2026-10-20-SH"],
+    ],
+    chain: { height:"9,412,883", time:"2026-10-20 11:31:22", nodes:"合作社 · 检测 · 仓储 · 物流 · 监管 · 平台" },
+    env: { title:"冷链运输 · 兴义市 → 贵阳市（320km · 6h05m）", lo:2, hi:8,
+      temp:[4.8,4.4,4.0,3.7,3.5,3.8,4.2,4.6,5.0,5.3,5.6,5.8,5.5,5.1,4.7,4.3,3.9,3.6,3.8,4.1,4.5,4.9,5.2,4.7],
+      hum:[60,61,62,63,64,63,62,61,60,59,58,58,59,60,61,62,63,64,63,62,61,60,59,60] },
+    nodes: [
+      { ic:"🌱", t:"基地种植", time:"2023-10-12 09:30", place:"贵州省黔西南州兴义市敬南镇（海拔 1,180m）",
+        kv:[["栽培方式","大棚活树附生栽培"],["种植主体","兴义市黔斛农业科技有限公司"],["基地编号","YJLC-BASE-GZ-045"],["生长周期","36 个月"]] },
+      { ic:"🧺", t:"采收分级", time:"2026-10-20 08:10", place:"斛棚二区 · 采收现场",
+        kv:[["品级","三年生鲜条（茎条粗壮）"],["采收数量","180 kg"],["分级员","岑明兰"],["首次赋码","2026-10-20 08:55"]] },
+      { ic:"🔬", t:"质量检测", time:"2026-10-20 11:20", place:"贵州医科大学 · 中药功效成分发掘与利用全国重点实验室（联合检测）",
+        kv:[["多糖含量","34.5%（药典 ≥ 25.0%）"],["甘露糖特征峰","符合药典规定"],["农残（33项）","全部合格"],["重金属","限度内合格"]] },
+      { ic:"📦", t:"分类包装", time:"2026-10-20 13:20", place:"良仓 · 产地前置仓（兴义）",
+        kv:[["包装方案","贵细类 · 真空 + 礼盒 + 一物一码防伪"],["加工窗口","采收后 6 小时内完成"],["包装批次","PB-2026-10-20-SH"],["保鲜处理","预冷后真空封装"]] },
+      { ic:"🏭", t:"温控入库", time:"2026-10-20 15:40", place:"良仓 · 冷藏库 B-01",
+        kv:[["库温","2~8°C（实时 3.6°C）"],["相对湿度","68%"],["仓库管理","韦丽"],["GSP 台账","同步生成"]] },
+      { ic:"🚚", t:"冷链运输", time:"2026-10-22 08:30", place:"兴义市 → 贵阳市（320km）",
+        kv:[["冷藏车","贵E·F3T68"],["全程温度","3.5~6.8°C · 达标"],["温湿度记录","每 5 分钟自动上报"],["驾驶员","韦涛"]] },
+      { ic:"✅", t:"终端签收", time:"2026-10-22 15:45", place:"贵阳养元堂中医馆（演示）",
+        kv:[["签收人","何静"],["码状态","已激活 · 首次查询"],["质检随行","报告同步查验"],["售后通道","平台客服在线"]] },
+    ],
+  },
+};
+
+/* ================== 二维码生成（扫码直达网址） ================== */
+function siteBase(){
+  const u = new URL(location.href);
+  return u.origin + u.pathname;
+}
+function traceUrl(code){ return siteBase() + '?code=' + encodeURIComponent(code); }
+
+function makeQrSvg(text, size, dark){
+  const qr = qrcode(0, 'M');
+  qr.addData(text);
+  qr.make();
+  const n = qr.getModuleCount(), cell = size / n;
+  let rects = '';
+  for (let y=0; y<n; y++){
+    for (let x=0; x<n; x++){
+      if (qr.isDark(x, y)){
+        rects += '<rect x="' + (x*cell).toFixed(2) + '" y="' + (y*cell).toFixed(2) +
+                 '" width="' + cell.toFixed(2) + '" height="' + cell.toFixed(2) +
+                 '" fill="' + (dark || '#2B2620') + '"/>';
+      }
+    }
+  }
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + size + ' ' + size + '">' +
+         '<rect width="' + size + '" height="' + size + '" fill="#fff"/>' + rects + '</svg>';
+}
+function renderQR(el, text, size){ if (el) el.innerHTML = makeQrSvg(text, size || 200); }
+
+/* 下载二维码为 PNG */
+function downloadQr(el, filename){
+  const svg = el.querySelector('svg'); if (!svg) return;
+  const size = 900;
+  const xml = new XMLSerializer().serializeToString(svg);
+  const img = new Image();
+  img.onload = function(){
+    const c = document.createElement('canvas'); c.width = size; c.height = size;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, size, size);
+    ctx.drawImage(img, 0, 0, size, size);
+    const a = document.createElement('a');
+    a.href = c.toDataURL('image/png'); a.download = filename; a.click();
+  };
+  img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
+}
+
+/* 首页二维码：内容为可直达的网址 */
+const HERO_CODE = 'YJLC-2026-TM-0001';
+renderQR(document.getElementById('heroQr'), traceUrl(HERO_CODE), 200);
+document.getElementById('heroQrUrl').textContent = traceUrl(HERO_CODE);
+document.getElementById('heroQr').addEventListener('click', ()=>{ fillCode(HERO_CODE); jumpToTrace(); });
+
+/* 扫码进入：URL 带 ?code=xxx 时自动查询 */
+(function(){
+  const q = new URLSearchParams(location.search).get('code');
+  if (!q) return;
+  const code = q.trim().toUpperCase();
+  document.getElementById('traceInput').value = code;
+  setTimeout(function(){
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
+    doTrace(true);
+  }, 260);
+})();
+
+/* ================== 溯源查询 ================== */
+function jumpToTrace(){ document.getElementById('trace').scrollIntoView({behavior:'smooth'}); }
+function fillCode(code){ document.getElementById('traceInput').value = code; doTrace(); }
+
+function doTrace(fromScan){
+  const input = document.getElementById('traceInput').value.trim().toUpperCase();
+  const err = document.getElementById('traceErr');
+  const box = document.getElementById('traceResult');
+  err.style.display = 'none';
+  if (!input){ err.textContent = '请先输入溯源码，或点击上方示例码体验。'; err.style.display = 'block'; box.style.display = 'none'; return; }
+  const rec = TRACE_DB[input];
+  if (!rec){ err.textContent = `未查询到溯源码「${input}」，请核对后重试；演示环境可点击上方示例码。`; err.style.display = 'block'; box.style.display = 'none'; return; }
+  renderTrace(input, rec);
+  renderQR(document.getElementById('trQr'), traceUrl(input), 150);
+  box.style.display = 'block';
+  box.scrollIntoView({behavior: fromScan ? 'auto' : 'smooth', block:'start'});
+}
+
+function renderTrace(code, rec){
+  document.getElementById('trName').textContent = rec.name;
+  document.getElementById('trCat').textContent = rec.cat;
+  document.getElementById('trCode').textContent = code;
+
+  // 档案
+  document.getElementById('trProfile').innerHTML = rec.profile.map(([k,v]) =>
+    `<div class="cell"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+
+  // 区块链存证卡
+  const h1 = '0x' + hashHex(code + ':tx', 40), h2 = '0x' + hashHex(code + ':root', 64);
+  document.getElementById('trChain').innerHTML = `
+    <div><div class="k">存证链</div><div class="v">药济链 YJL-Chain · 联盟链</div></div>
+    <div><div class="k">区块高度</div><div class="v">#${rec.chain.height}</div></div>
+    <div><div class="k">上链时间</div><div class="v">${rec.chain.time}</div></div>
+    <div><div class="k">共识节点</div><div class="v">${rec.chain.nodes}</div></div>
+    <div style="grid-column:1/-1"><div class="k">交易哈希 TX</div><div class="v mono">${h1}…</div></div>
+    <div style="grid-column:1/-1"><div class="k">存证默克尔根</div><div class="v mono">${h2}</div></div>`;
+
+  // 时间线
+  document.getElementById('trTimeline').innerHTML = rec.nodes.map((n, i) => {
+    const hash = '0x' + hashHex(code + ':' + i, 12);
+    return `<div class="tl-node">
+      <div class="dot done">${n.ic}</div>
+      <div class="tl-body">
+        <div class="row1"><h4>${n.t}</h4><span class="time">${n.time}</span></div>
+        <div class="place">📍 ${n.place}</div>
+        <div class="kv">${n.kv.map(([k,v]) => `<div class="item"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('')}</div>
+        <span class="onchain">🛡 已上链 · <span class="hash">${hash}…</span> · 存证有效</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // 温湿度曲线
+  drawEnv(rec.env);
+}
+
+/* ================== 温湿度 SVG 曲线 ================== */
+function drawEnv(env){
+  const W = 900, H = 240, padL = 44, padR = 16, padT = 18, padB = 34;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const N = env.temp.length;
+  const x = i => padL + (iw * i) / (N - 1);
+  // 温度轴
+  const tMin = Math.min(...env.temp) - 1.5, tMax = Math.max(...env.temp) + 1.5;
+  const ty = v => padT + ih - (ih * (v - tMin)) / (tMax - tMin);
+  // 湿度轴（40~70）
+  const hy = v => padT + ih - (ih * (v - 35)) / (75 - 35);
+  let grid = '';
+  for (let g = 0; g <= 4; g++){
+    const yy = padT + (ih * g) / 4;
+    grid += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="#E4D9C6" stroke-width="1" stroke-dasharray="3 4"/>
+             <text x="${padL-8}" y="${yy+4}" font-size="11" fill="#9A8D7C" text-anchor="end">${(tMax - ((tMax-tMin)*g)/4).toFixed(0)}°</text>`;
+  }
+  // 达标带（温度 lo~hi 映射）
+  const bandTop = ty(Math.min(env.hi, tMax)), bandBot = ty(Math.max(env.lo, tMin));
+  const band = `<rect x="${padL}" y="${bandTop}" width="${iw}" height="${Math.max(0, bandBot-bandTop)}" fill="#9A3B26" opacity="0.06"/>
+    <text x="${padL+iw-6}" y="${bandTop+14}" font-size="10.5" fill="#9A3B26" text-anchor="end" opacity="0.7">达标温区 ${env.lo}~${env.hi}°C</text>`;
+  const line = (arr, yf, color) => arr.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${yf(v).toFixed(1)}`).join(' ');
+  let xlabels = '';
+  const step = Math.ceil(N/8);
+  for (let i=0;i<N;i+=step){ xlabels += `<text x="${x(i)}" y="${H-10}" font-size="10.5" fill="#9A8D7C" text-anchor="middle">${i*5}′</text>`; }
+  document.getElementById('envSvg').innerHTML = `
+  <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">
+    ${grid}${band}
+    <path d="${line(env.hum, hy, '#2C4A6E')}" fill="none" stroke="#2C4A6E" stroke-width="2" opacity="0.75" stroke-dasharray="1 0"/>
+    <path d="${line(env.temp, ty, '#9A3B26')}" fill="none" stroke="#9A3B26" stroke-width="2.5"/>
+    ${env.temp.map((v,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${ty(v).toFixed(1)}" r="2.4" fill="#9A3B26"/>`).join('')}
+    ${xlabels}
+    <text x="${padL}" y="${hy(70)-4}" font-size="10.5" fill="#2C4A6E" opacity="0.8">湿度 35~75% 刻度</text>
+  </svg>
+  <div style="font-size:12px;color:var(--ink-faint);margin-top:6px">▸ ${env.title} · 全程温湿度在达标区间内，无告警记录</div>`;
+}
+
+/* ================== 滚动动效 & 数字滚动 ================== */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+}), { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 数字滚动
+function animateNum(el){
+  const target = +el.dataset.count, dur = 1300, t0 = performance.now();
+  const fmt = n => n >= 1000 ? n.toLocaleString() : n;
+  (function tick(t){
+    const p = Math.min(1, (t - t0) / dur), ease = 1 - Math.pow(1-p, 3);
+    el.firstChild.nodeValue = fmt(Math.round(target * ease));
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+const statIO = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ animateNum(e.target); statIO.unobserve(e.target); }
+}), { threshold: 0.4 });
+document.querySelectorAll('.stat .num').forEach(el => { el.firstChild.nodeValue = '0'; statIO.observe(el); });
+
+// 成效条形图
+const barIO = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){
+    e.target.querySelectorAll('.fill').forEach((f,i) => setTimeout(()=> f.style.width = f.dataset.w, i*180));
+    barIO.unobserve(e.target);
+  }
+}), { threshold: 0.3 });
+document.querySelectorAll('.bar-block').forEach(el => barIO.observe(el));
+
+
+/* ================== 在线赋码 ================== */
+function doMint(){
+  const v = (document.getElementById('mintCode').value || '').trim().toUpperCase();
+  const url = traceUrl(v || 'YJLC-2026-TM-0001');
+  renderQR(document.getElementById('mintQr'), url, 250);
+  document.getElementById('mintQrUrl').textContent = url;
+}
+function openMintUrl(){
+  const v = (document.getElementById('mintCode').value || '').trim().toUpperCase();
+  window.open(traceUrl(v || 'YJLC-2026-TM-0001'), '_blank');
+}
+doMint();
+document.getElementById('mintCode').addEventListener('keydown', e => { if (e.key === 'Enter') doMint(); });
+
+// 回车查询
+document.getElementById('traceInput').addEventListener('keydown', e => { if (e.key === 'Enter') doTrace(); });
+</script>
+</body>
+</html>
